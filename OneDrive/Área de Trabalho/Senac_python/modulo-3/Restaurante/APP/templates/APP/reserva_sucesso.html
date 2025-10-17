@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .content-card {
+        max-width: 600px;
+        margin: 5rem auto;
+        padding: 3rem;
+        background-color: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        color: #f0f0f0;
+        text-align: center;
+    }
+    .content-card h1 {
+        color: #ffc107; /* Título em dourado */
+        font-size: 2.5rem;
+    }
+    .content-card p {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+    .link-outra-reserva {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 10px 20px;
+        background-color: #ffc107;
+        color: #333;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: transform 0.2s;
+    }
+    .link-outra-reserva:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="content-card">
+    <h1>Reserva Confirmada!</h1>
+    <p>Obrigado, sua reserva foi agendada com sucesso.</p>
+    <p>Aguardamos sua visita!</p>
+    <a href="{% url 'home' %}" class="link-outra-reserva">Fazer outra reserva</a>
+</div>
+{% endblock %}
