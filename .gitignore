@@ -1,0 +1,15 @@
+# Arquivos de Cache do Python
+__pycache__/
+*.pyc
+
+# Banco de Dados
+db.sqlite3
+
+# Pasta do Ambiente Virtual
+venv/
+
+# Arquivos de IDE (ex: VS Code)
+.vscode/
+
+# Arquivos de sistema
+.DS_Store

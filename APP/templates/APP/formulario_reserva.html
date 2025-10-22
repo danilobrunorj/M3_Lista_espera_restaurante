@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* O CSS do formulário que você tinha antes.
+      Eu peguei da sua correção anterior e removi as duplicatas.
+    */
+    .form-container {
+        max-width: 600px;
+        margin: 3rem auto;
+        padding: 2.5rem;
+        background-color: rgba(10, 10, 10, 0.7); 
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .form-container h2 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+    .form-container .form-label {
+        color: #f0f0f0;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+    .form-container input,
+    .form-container textarea,
+    .form-container select {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 0.75rem;
+    }
+    .form-container input:focus,
+    .form-container textarea:focus,
+    .form-container select:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: #ffc107;
+        box-shadow: none;
+        outline: none;
+    }
+    .form-container input::placeholder,
+    .form-container textarea::placeholder {
+        color: #cccccc;
+    }
+    .form-container input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+    .btn-confirmar {
+        background-color: #ffc107;
+        color: #333;
+        font-weight: bold;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+    }
+    .btn-confirmar:hover {
+        background-color: #ffda73;
+        transform: scale(1.02);
+    }
+
+    /* Importante: Esta é a classe do SweetAlert escuro
+      que você já usa na outra tela. 
+    */
+    .swal-dark-popup.swal2-popup {
+        background: #2a2a2a !important;
+        color: #f0f0f0 !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+</style>
+
+<div class="form-container">
+    
+    <h2>{% if form.instance.pk %}Editar Reserva{% else %}Faça sua Reserva{% endif %}</h2>
+    
+    <form method="post" action="{% if form.instance.pk %}{% url 'editar_reserva' form.instance.pk %}{% else %}{% url 'criar_reserva' %}{% endif %}" novalidate id="reserva-form">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="text-danger mt-1">
+                    <small>{{ field.errors|striptags }}</small>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <div class="d-grid">
+            
+            <button type="submit" class="btn-confirmar" id="btn-confirmar-swal"
+                    data-is-editing="{% if form.instance.pk %}true{% else %}false{% endif %}"
+            >
+                {% if form.instance.pk %}
+                    Salvar Alterações
+                {% else %}
+                    Confirmar Reserva
+                {% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- CÓDIGO DA MÁSCARA DE TELEFONE (Existente) ---
+    var phoneInput = document.querySelector('input[name="telefone"]');
+    if (phoneInput) {
+        var phoneMaskOptions = {
+            mask: '(00) 00000-0000'
+        };
+        var mask = IMask(phoneInput, phoneMaskOptions);
+    }
+
+    // --- NOSSO NOVO CÓDIGO SWEETALERT ---
+    
+    // 1. Encontra o formulário e o botão pelos IDs que adicionamos
+    const form = document.getElementById('reserva-form');
+    const confirmButton = document.getElementById('btn-confirmar-swal');
+
+    if (form && confirmButton) {
+        // 2. Adiciona o "ouvinte" de clique ao botão
+        confirmButton.addEventListener('click', function(event) {
+            // 3. Previne o envio imediato do formulário
+            event.preventDefault();
+
+            // 4. Checa se é "editar" ou "criar" (lendo o 'data-is-editing')
+            const isEditing = confirmButton.dataset.isEditing === 'true';
+
+            let titleText = 'Você tem certeza?';
+            let confirmText;
+
+            if (isEditing) {
+                // Texto que você pediu para "Editar Reserva"
+                confirmText = 'Tem certeza que deseja confirmar a reserva?';
+            } else {
+                // Texto padrão para "Criar Reserva"
+                confirmText = 'Tem certeza que deseja confirmar a reserva?';
+            }
+
+            // 5. Mostra o pop-up bonito do SweetAlert
+            Swal.fire({
+                title: titleText,
+                text: confirmText,
+                icon: 'question', // Ícone de interrogação
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6', // Azul (cor padrão de confirmação)
+                cancelButtonColor: '#6c757d',  // Cinza (cor de cancelar)
+                confirmButtonText: 'Sim, confirmar!',
+                cancelButtonText: 'Cancelar',
+                
+                // A MÁGICA: Usa a mesma classe de CSS escura da tela "gerenciar"
+                customClass: {
+                    popup: 'swal-dark-popup' 
+                }
+            }).then((result) => {
+                // 6. Se o usuário clicar em "Sim", envia o formulário
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    }
+});
+</script>
+
+{% endblock %}

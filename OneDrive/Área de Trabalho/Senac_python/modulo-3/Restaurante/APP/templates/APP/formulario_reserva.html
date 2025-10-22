@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* O container principal do formulário */
+    .form-container {
+        max-width: 600px;
+        margin: 3rem auto; /* Centraliza e dá espaço em cima/baixo */
+        padding: 2.5rem;
+        
+        /* O EFEITO MÁGICO! */
+        background-color: rgba(10, 10, 10, 0.7); /* Fundo preto com 70% de transparência */
+        backdrop-filter: blur(10px); /* Desfoca a imagem de fundo atrás do card (super moderno) */
+        
+        border-radius: 15px; /* Bordas arredondadas */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Título "Faça sua Reserva" */
+    .form-container h2 {
+        color: #ffffff; /* Cor branca para o título */
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+
+    /* Rótulos (Nome do Cliente, Telefone, etc.) */
+    .form-container .form-label {
+        color: #f0f0f0; /* Um branco suave para os rótulos */
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    /* --- INÍCIO DA CORREÇÃO --- */
+    /* Campos de input e textarea (regra de CSS ajustada) */
+    .form-container input,
+    .form-container textarea,
+    .form-container select {
+        width: 100%; /* Garante que todos ocupem a largura total */
+        background-color: rgba(255, 255, 255, 0.1); /* Fundo do campo levemente transparente */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ffffff !important; /* TEXTO DIGITADO FICA BRANCO */
+        border-radius: 8px;
+        padding: 0.75rem;
+    }
+
+    .form-container input:focus,
+    .form-container textarea:focus,
+    .form-container select:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: #ffc107; /* Borda fica dourada ao clicar */
+        box-shadow: none;
+        outline: none; /* Remove a borda azul padrão do navegador ao focar */
+    }
+    
+    /* Cor do texto de placeholder */
+    .form-container input::placeholder,
+    .form-container textarea::placeholder {
+        color: #cccccc;
+    }
+    /* --- FIM DA CORREÇÃO --- */
+    
+    /* Estilo para o campo de data (pode variar entre navegadores) */
+    .form-container input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1); /* Inverte a cor do ícone do calendário para branco */
+    }
+
+    /* BOTÃO DE CONFIRMAR RESERVA */
+    .btn-confirmar {
+        background-color: #ffc107; /* O mesmo amarelo chamativo do menu */
+        color: #333; /* Texto escuro para bom contraste */
+        font-weight: bold;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-confirmar:hover {
+        background-color: #ffda73; /* Cor mais clara ao passar o mouse */
+        transform: scale(1.02);
+    }
+</style>
+
+<div class="form-container">
+    <h2>Faça sua Reserva</h2>
+    
+    <form method="post" action="{% url 'criar_reserva' %}" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+            
+            {{ field }}
+            
+            {% if field.errors %}
+                <div class="text-danger mt-1">
+                    <small>{{ field.errors|striptags }}</small>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <div class="d-grid">
+            <button type="submit" class="btn-confirmar" onclick="return confirm('Tem certeza que deseja confirmar a reserva com estes dados?');">
+                Confirmar Reserva
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tenta encontrar o campo de telefone. O ID pode variar, então buscamos pelo name.
+    var phoneInput = document.querySelector('input[name="telefone"]'); // Ajuste para buscar pelo nome
+    if (phoneInput) {
+        var phoneMaskOptions = {
+            mask: '(00) 00000-0000'
+        };
+        var mask = IMask(phoneInput, phoneMaskOptions);
+    }
+});
+</script>
+
+{% endblock %}

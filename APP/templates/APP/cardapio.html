@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Card principal para o conteúdo do cardápio */
+    .content-card {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 2.5rem;
+        background-color: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        color: #f0f0f0; /* Cor do texto principal */
+    }
+    
+    .cardapio-titulo {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        color: #ffffff;
+    }
+    
+    .categoria-titulo {
+        /* A linha amarela que você gostou */
+        border-bottom: 2px solid #ffc107;
+        padding-bottom: 10px;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        color: #ffc107; /* Título da categoria em dourado */
+    }
+    
+    .item-cardapio {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        /* Linha divisória mais sutil e clara */
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Nome do prato */
+    .item-info h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #ffffff; /* Letras brancas e visíveis */
+    }
+    
+    /* Descrição do prato */
+    .item-info p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #cccccc; /* Descrição com um cinza claro */
+    }
+    
+    .item-preco {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ffffff; /* Preço também em branco */
+    }
+</style>
+
+<div class="content-card">
+    <h2 class="cardapio-titulo">Cardápio Sabor Divino</h2>
+
+    <h3 class="categoria-titulo">Pratos Brasileiros</h3>
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Feijoada Completa</h4>
+            <p>Acompanha arroz, couve, farofa e laranja.</p>
+        </div>
+        <span class="item-preco">R$ 45,90</span>
+    </div>
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Moqueca de Peixe</h4>
+            <p>Com azeite de dendê, leite de coco, arroz e pirão.</p>
+        </div>
+        <span class="item-preco">R$ 55,00</span>
+    </div>
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Picanha na Chapa</h4>
+            <p>Fatias nobres de picanha com fritas, farofa e vinagrete.</p>
+        </div>
+        <span class="item-preco">R$ 79,90</span>
+    </div>
+     <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Bobó de Camarão</h4>
+            <p>Cremoso, com aipim, leite de coco e arroz branco.</p>
+        </div>
+        <span class="item-preco">R$ 62,00</span>
+    </div>
+     <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Escondidinho de Carne Seca</h4>
+            <p>Purê de aipim gratinado com queijo coalho.</p>
+        </div>
+        <span class="item-preco">R$ 38,50</span>
+    </div>
+
+    <h3 class="categoria-titulo">Sobremesas</h3>
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Pudim de Leite Condensado</h4>
+            <p>A sobremesa mais amada do Brasil.</p>
+        </div>
+        <span class="item-preco">R$ 12,00</span>
+    </div>
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Mousse de Maracujá</h4>
+            <p>Cremoso e refrescante.</p>
+        </div>
+        <span class="item-preco">R$ 14,00</span>
+    </div>
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Brigadeirão</h4>
+            <p>Intenso sabor de chocolate, com granulado.</p>
+        </div>
+        <span class="item-preco">R$ 15,00</span>
+    </div>
+     <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Quindim</h4>
+            <p>Doce tradicional à base de coco e gema de ovo.</p>
+        </div>
+        <span class="item-preco">R$ 10,00</span>
+    </div>
+
+    <h3 class="categoria-titulo">Bebidas</h3>
+     <div class="item-cardapio">
+        <div class="item-info">
+            <h4>Caipirinha de Limão</h4>
+            <p>Cachaça, vodka ou saquê.</p>
+        </div>
+        <span class="item-preco">R$ 18,00</span>
+    </div>
+    </div>
+{% endblock %}

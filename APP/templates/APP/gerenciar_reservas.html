@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %} 
+<style>
+    /* Estilos do seu layout */
+    .content-card {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 2.5rem;
+        background-color: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        color: #f0f0f0; 
+    }
+    .content-card h2, .content-card h3 {
+        color: #ffffff;
+        text-align: center;
+    }
+    .table {
+        color: #f0f0f0; 
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .table th {
+        color: #ffc107; 
+    }
+    .btn-adicionar {
+        background-color: #ffc107; color: #333; font-weight: bold;
+    }
+    
+    /* ======================================================
+      CSS CUSTOMIZADO PARA O SWEETALERT
+      Garante que o popup siga 100% o tema escuro do seu site
+      ======================================================
+    */
+    .swal-dark-popup.swal2-popup {
+        background: #2a2a2a !important;
+        color: #f0f0f0 !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+
+    /* Estilo BASE que se aplica a AMBOS os botões (Editar e Excluir) */
+    .btn-acao {
+        display: inline-block;
+        padding: 8px 16px; /* Define um tamanho padrão */
+        font-size: 1rem; /* Define um tamanho de fonte padrão */
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;  /* Remove o sublinhado do link "Editar" */
+        color: white !important; /* Força o texto a ser branco */
+        
+        border: none;           /* Remove a borda padrão do <button> */
+        border-radius: 8px;     /* Arredonda as bordas de AMBOS */
+        
+        cursor: pointer;
+        margin: 0 4px; /* Adiciona um pequeno espaço entre os botões */
+        transition: transform 0.2s ease, filter 0.2s ease; /* Animação suave */
+    }
+
+    /* Efeito ao passar o mouse por cima */
+    .btn-acao:hover {
+        transform: scale(1.05);   /* Aumenta um pouco o tamanho */
+        filter: brightness(1.1); /* Deixa a cor um pouco mais brilhante */
+    }
+
+    /* Cor específica para o botão EDITAR */
+    .btn-editar {
+        background-color: #0d6efd; /* Azul */
+    }
+
+    /* Cor específica para o botão EXCLUIR */
+    .btn-excluir {
+        background-color: #dc3545; /* Vermelho */
+    }
+</style>
+
+<div class="content-card">
+    <h2>Gerenciamento de Reservas</h2>
+    <hr style="border-color: rgba(255, 255, 255, 0.2);">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="h5">Total de Reservas: {{ reservas.count }}</h3>
+            <h3 class="h5">Reservas Confirmadas: {{ reservas_confirmadas_count }}</h3>
+        </div>
+        <a href="{% url 'criar_reserva' %}" class="btn btn-adicionar">+ Adicionar Reserva</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Pessoas</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.nome_cliente }}</td>
+                    <td>{{ reserva.data_reserva|date:"d/m/Y" }}</td>
+                    <td>{{ reserva.numero_de_pessoas }}</td>
+                    <td>{% if reserva.confirmada %}Confirmada{% else %}Pendente{% endif %}</td>
+                    
+                    <td>
+                        <a href="{% url 'editar_reserva' reserva.id %}" class="btn-acao btn-editar">Editar</a>
+
+                        <form action="{% url 'excluir_reserva' reserva.id %}" method="post" style="display: inline;" class="form-excluir">
+                            {% csrf_token %}
+                            <button type="button" class="btn-acao btn-excluir btn-excluir-swal">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhuma reserva encontrada.</td>
+                </tr>
+                {% endfor %} 
+            </tbody> 
+        </table>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Encontra TODOS os botões de excluir pela classe que adicionamos
+    const deleteButtons = document.querySelectorAll('.btn-excluir-swal');
+
+    // 2. Adiciona o evento de clique a cada um deles
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            // Previne o comportamento padrão do botão
+            event.preventDefault();
+
+            // 3. Encontra o formulário "pai" mais próximo do botão que foi clicado
+            const form = this.closest('.form-excluir');
+
+            // 4. Mostra o alerta personalizado do SweetAlert2
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: "Esta reserva será excluída permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar',
+                // Adicionando nossa classe de CSS para o tema escuro
+                customClass: {
+                    popup: 'swal-dark-popup'
+                }
+            }).then((result) => {
+                // 5. Se o usuário clicar em "Sim, excluir!", envia o formulário
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+</script>
+
+{% endblock %}

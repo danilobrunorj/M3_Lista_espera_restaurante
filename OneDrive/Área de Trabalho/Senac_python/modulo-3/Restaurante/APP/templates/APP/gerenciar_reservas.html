@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .content-card {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 2.5rem;
+        background-color: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        color: #f0f0f0; /* Cor do texto principal */
+    }
+    .content-card h2, .content-card h3 {
+        color: #ffffff;
+        text-align: center;
+    }
+    .table {
+        color: #f0f0f0; /* Cor do texto da tabela */
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .table th {
+        color: #ffc107; /* Títulos da tabela em dourado */
+    }
+    .btn-adicionar {
+        background-color: #ffc107; color: #333; font-weight: bold;
+    }
+    .btn-excluir {
+        background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px;
+    }
+</style>
+
+<div class="content-card">
+    <h2>Gerenciamento de Reservas</h2>
+    <hr style="border-color: rgba(255, 255, 255, 0.2);">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="h5">Total de Reservas: {{ reservas.count }}</h3>
+            <h3 class="h5">Reservas Confirmadas: {{ reservas_confirmadas_count }}</h3>
+        </div>
+        <a href="{% url 'criar_reserva' %}" class="btn btn-adicionar">+ Adicionar Reserva</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Pessoas</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.nome_cliente }}</td>
+                    <td>{{ reserva.data_reserva|date:"d/m/Y" }}</td>
+                    <td>{{ reserva.numero_de_pessoas }}</td>
+                    <td>{% if reserva.confirmada %}Confirmada{% else %}Pendente{% endif %}</td>
+                    <td>
+                        <form action="{% url 'excluir_reserva' reserva.id %}" method="post" onsubmit="return confirm('Tem certeza?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhuma reserva encontrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
