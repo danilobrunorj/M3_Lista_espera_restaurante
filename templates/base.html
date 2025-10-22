@@ -6,14 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurante Sabor Divino</title>
 
-    
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
-=======
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     
     <style>
         /* --- INÍCIO DO CÓDIGO CSS --- */
@@ -57,37 +51,58 @@
             padding-bottom: 10px;
         }
 
-        /* Estilo dos links do menu */
+        /* Estilo dos links do menu (CORRIGIDO) */
         .nav-link {
-
-          color: white;
-          padding: 8px 15px;
-          border-radius: 20px;
-          text-decoration: none;
-          font-weight: bold;
-          margin: 0 5px;
-          transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-          background-color: #ffc107;
-          color: #333;
-          transform: scale(1.05);
-
-            color: white;
+            color: #f0f0f0;  /* Um branco suave (para corrigir o roxo) */
             padding: 8px 15px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
             margin: 0 5px;
             transition: all 0.3s ease;
+            font-size: 1.1rem;
         }
 
+        /* Hover dos links (CORRIGIDO) */
         .nav-link:hover {
-            background-color: #ffc107;
-            color: #333;
+            color: #ffc107; /* Dourado/amarelo ao passar o mouse */
             transform: scale(1.05);
+            /* background-color removido para não ficar um bloco dourado */
+        }
 
+        /* =======================================
+           ESTILO PARA O BOTÃO DE LOGOUT PARECER UM LINK
+           (Esta é a 1ª CORREÇÃO)
+           =======================================
+        */
+        .form-logout-nav {
+            display: inline; /* Faz o formulário ficar na mesma linha do menu */
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-logout-nav .nav-link-button {
+            /* Reseta o visual padrão do botão */
+            background: none;
+            border: none;
+            cursor: pointer;
+            
+            /* Pega o mesmo estilo exato do .nav-link */
+            color: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-family: sans-serif; /* Garante a mesma fonte */
+        }
+
+        /* Efeito hover (o mesmo do .nav-link) */
+        .form-logout-nav .nav-link-button:hover {
+            color: #ffc107;
+            transform: scale(1.05);
         }
 
         /* --- FIM DO CÓDIGO CSS --- */
@@ -98,11 +113,27 @@
 
     <header class="navbar">
         <h1 class="site-title">Restaurante Sabor Divino</h1>
+        
         <nav>
-            <a href="{% url 'home' %}" class="nav-link">Home</a>
-            <a href="{% url 'gerenciar_reservas' %}" class="nav-link">Gerenciar Reserva</a>
+            <a href="{% url 'criar_reserva' %}" class="nav-link">Home✨</a>
+            
             <a href="{% url 'cardapio' %}" class="nav-link">Nosso Cardápio ✨</a>
+            
+            {% if user.is_authenticated %}
+                
+                
+                <form method="post" action="{% url 'logout' %}" class="form-logout-nav">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link-button">
+                        Logout ({{ user.username }})
+                    </button>
+                </form>
+
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-link">Gerenciar reserva✨</a>
+            {% endif %}
         </nav>
+        
     </header>
 
     <main>

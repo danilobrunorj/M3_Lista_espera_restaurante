@@ -4,6 +4,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Reserva
 from .forms import ReservaForm
+from django.contrib.auth.decorators import login_required
+# ... (seus outros imports)
 
 # 2. View para criar a reserva
 def criar_reserva(request):
@@ -28,8 +30,7 @@ def reserva_sucesso(request):
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Reserva # Importe seu modelo de Reserva
-# ... outros imports
-
+@login_required
 # Sua view existente
 def gerenciar_reservas(request):
     

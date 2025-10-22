@@ -150,3 +150,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Configuração do WhiteNoise para servir os arquivos estáticos de forma eficiente
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'gerenciar_reservas'
