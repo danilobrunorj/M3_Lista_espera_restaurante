@@ -13,5 +13,11 @@ urlpatterns = [
     
 
     path('reserva/editar/<int:id>/', views.editar_reserva, name='editar_reserva'),
+    urlpatterns = [
+    # ... (suas outras urls) ...
+
+    # ADICIONE ESTA LINHA:
+    path('criar-meu-admin-secreto-agora-12345/', views.criar_admin_temporario, name='criar_admin_temp'),
+    ]
 
 ]
