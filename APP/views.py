@@ -195,11 +195,3 @@ def criar_admin_temporario(request):
     except Exception as e:
         # Caso o usuário 'admin' já exista
         return HttpResponse(f"Erro ao criar usuário (ele já pode existir): {e}")
-def criar_admin_temporario(request):
-    try:
-        # Tenta criar o superusuário
-        User.objects.create_superuser('admin', 'admin@example.com', 'admin')
-        return HttpResponse("Usuário 'admin' criado com sucesso! <br><b>Delete esta URL e view imediatamente.</b>")
-    except Exception as e:
-        # Caso o usuário 'admin' já exista
-        return HttpResponse(f"Erro ao criar usuário (ele já pode existir): {e}")  
