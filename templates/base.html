@@ -112,12 +112,13 @@
 <body style="background-image: url('{% static 'images/background.jpg' %}');">
 
     <header class="navbar">
-        <h1 class="site-title">Restaurante Sabor Divino</h1>
+        <h1 class="site-title">Restaurante & Pizzaria Sabor Divino</h1>
         
         <nav>
             <a href="{% url 'criar_reserva' %}" class="nav-link">Home✨</a>
             
             <a href="{% url 'cardapio' %}" class="nav-link">Nosso Cardápio ✨</a>
+            <a href="{% url 'nosso_restaurante' %}"class="nav-link">Nosso Restaurante✨</a>
             
             {% if user.is_authenticated %}
                 

@@ -11,5 +11,6 @@ urlpatterns = [
     
     # URL de edição
     path('reserva/editar/<int:id>/', views.editar_reserva, name='editar_reserva'),
+    path('nosso-restaurante/', views.pagina_nosso_restaurante, name='nosso_restaurante'),
     
 ]

@@ -195,3 +195,15 @@ def criar_admin_temporario(request):
     except Exception as e:
         # Caso o usuário 'admin' já exista
         return HttpResponse(f"Erro ao criar usuário (ele já pode existir): {e}")
+    
+def pagina_nosso_restaurante(request):
+    """
+    Renderiza a página 'Nosso Restaurante' com o vídeo.
+    """
+    # Você pode passar o ID do vídeo para o template se quiser
+    context = {
+        'video_id': 'GUlTbXYtMrc'
+    }
+    # O Django vai procurar por 'nosso_restaurante.html' na sua pasta 'templates'
+    
+    return render(request, 'APP/nosso_restaurante.html', context)
