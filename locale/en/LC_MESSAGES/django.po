@@ -1,0 +1,291 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-29 21:18-0300\n"
+"PO-Revision-Date: 2025-10-29 21:08-0300\n"
+"Last-Translator: Danilo Bruno Sampaio Conceição Teixeira\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\APP\forms.py:29
+msgid "Nome do Cliente"
+msgstr "Client's Name"
+
+#: .\APP\forms.py:30
+msgid "Telefone"
+msgstr "Phone"
+
+#: .\APP\forms.py:31
+msgid "E-mail"
+msgstr "E-mail"
+
+#: .\APP\forms.py:32
+msgid "Número de Pessoas"
+msgstr "Number of People"
+
+#: .\APP\forms.py:33
+msgid "Data da Reserva"
+msgstr "Reservation Date"
+
+#: .\APP\forms.py:34
+msgid "Observações"
+msgstr "Observations"
+
+#: .\APP\templates\APP\formulario_reserva.html:174
+msgid "Nossa História"
+msgstr "Our History"
+
+#: .\APP\templates\APP\formulario_reserva.html:175
+msgid ""
+"Fundado com paixão pela boa comida e pela arte de receber bem, o Restaurante "
+"e Pizzaria Sabor Divino nasceu do sonho de oferecer experiências únicas à "
+"mesa. Desde o início, nossa missão sempre foi unir sabores tradicionais e um "
+"atendimento acolhedor, criando um ambiente onde cada cliente se sente em "
+"casa."
+msgstr ""
+"Founded with a passion for good food and the art of welcoming, Sabor Divino "
+"Restaurant & Pizzeria was born from the dream of offering unique experiences "
+"at the table. From the beginning, our mission has always been to unite "
+"traditional flavors with warm service, creating an environment where every "
+"customer feels at home."
+
+#: .\APP\templates\APP\formulario_reserva.html:176
+msgid ""
+"Com receitas inspiradas na culinária italiana e brasileira, nossas pizzas "
+"artesanais são preparadas com ingredientes frescos, massa de fermentação "
+"natural e muito carinho. Além das pizzas, nosso cardápio conta com massas, "
+"carnes, saladas e pratos especiais que agradam a todos os paladares."
+msgstr ""
+"With recipes inspired by Italian and Brazilian cuisine, our artisanal pizzas "
+"are prepared with fresh ingredients, natural fermentation dough, and lots of "
+"care. In addition to pizzas, our menu features pasta, meats, salads, and "
+"special dishes that please all palates."
+
+#: .\APP\templates\APP\formulario_reserva.html:177
+msgid ""
+"O Sabor Divino é mais do que um restaurante — é um ponto de encontro para "
+"famílias, amigos e casais que desejam compartilhar bons momentos "
+"acompanhados de comida saborosa e um ambiente aconchegante."
+msgstr ""
+"Sabor Divino is more than just a restaurant — it's a meeting point for "
+"families, friends, and couples who wish to share good moments accompanied by "
+"delicious food and a cozy atmosphere."
+
+#: .\APP\templates\APP\formulario_reserva.html:178
+msgid ""
+"Hoje, seguimos com o mesmo propósito que nos inspirou desde o começo: "
+"oferecer uma experiência gastronômica divina, feita com amor em cada detalhe."
+msgstr ""
+"Today, we continue with the same purpose that inspired us from the start: to "
+"offer a divine gastronomic experience, made with love in every detail."
+
+#: .\APP\templates\APP\formulario_reserva.html:183
+msgid "Editar Reserva"
+msgstr "Edit Reservation"
+
+#: .\APP\templates\APP\formulario_reserva.html:183
+msgid "Faça sua Reserva"
+msgstr "Make your Reservation"
+
+#: .\APP\templates\APP\formulario_reserva.html:203
+msgid "Salvar Alterações"
+msgstr "Save Changes"
+
+#: .\APP\templates\APP\formulario_reserva.html:205
+msgid "Confirmar Reserva"
+msgstr "Confirm Reservation"
+
+#: .\APP\templates\APP\formulario_reserva.html:213
+msgid "Nossas Redes"
+msgstr "Our Networks"
+
+#: .\APP\templates\APP\formulario_reserva.html:215
+msgid "Instagram"
+msgstr "Instagram"
+
+#: .\APP\templates\APP\formulario_reserva.html:219
+msgid "Facebook"
+msgstr "Facebook"
+
+#: .\APP\templates\APP\formulario_reserva.html:223
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: .\APP\templates\APP\formulario_reserva.html:251
+msgid "Você tem certeza?"
+msgstr "Are you sure?"
+
+#: .\APP\templates\APP\formulario_reserva.html:255
+#: .\APP\templates\APP\formulario_reserva.html:257
+msgid "Tem certeza que deseja confirmar a reserva?"
+msgstr "Are you sure you want to confirm the reservation?"
+
+#: .\APP\templates\APP\formulario_reserva.html:267
+msgid "Sim, confirmar!"
+msgstr "Yes, confirm!"
+
+#: .\APP\templates\APP\formulario_reserva.html:268
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: .\Restaurante\settings.py:18
+msgid "Português"
+msgstr "Portuguese"
+
+#: .\Restaurante\settings.py:19
+msgid "English"
+msgstr "English"
+
+#: .\Restaurante\settings.py:20
+msgid "Español"
+msgstr "Spanish"
+
+#: .\templates\base.html:10
+msgid "Restaurante Sabor Divino"
+msgstr "Sabor Divino Restaurant"
+
+#: .\templates\base.html:137
+msgid "Restaurante & Pizzaria Sabor Divino"
+msgstr "Sabor Divino Restaurant & Pizzeria"
+
+#: .\templates\base.html:140
+msgid "Home"
+msgstr "Home"
+
+#: .\templates\base.html:142
+msgid "Nosso Cardápio"
+msgstr "Our Menu"
+
+#: .\templates\base.html:143
+msgid "Nosso Restaurante"
+msgstr "Our Restaurant"
+
+#: .\templates\base.html:151
+msgid "Logout"
+msgstr "Logout"
+
+#: .\templates\base.html:156
+msgid "Gerenciar reserva"
+msgstr "Manage Reservation"
+
+#: templates/APP/cardapio.html:48
+msgid "Cardápio Sabor Divino"
+msgstr "Sabor Divino Menu"
+
+#: templates/APP/cardapio.html:51
+msgid "Pratos Brasileiros"
+msgstr "Brazilian Dishes"
+
+#: templates/APP/cardapio.html:55
+msgid "Feijoada Completa"
+msgstr "Complete Feijoada"
+
+#: templates/APP/cardapio.html:56
+msgid "Acompanha arroz, couve, farofa e laranja."
+msgstr "Served with rice, collard greens, farofa, and orange."
+
+#: templates/APP/cardapio.html:62
+msgid "Moqueca de Peixe"
+msgstr "Fish Moqueca"
+
+#: templates/APP/cardapio.html:63
+msgid "Com azeite de dendê, leite de coco, arroz e pirão."
+msgstr "With palm oil, coconut milk, rice, and pirão."
+
+#: templates/APP/cardapio.html:69
+msgid "Picanha na Chapa"
+msgstr "Grilled Picanha"
+
+#: templates/APP/cardapio.html:70
+msgid "Fatias nobres de picanha com fritas, farofa e vinagrete."
+msgstr "Noble picanha slices with fries, farofa, and vinaigrette."
+
+#: templates/APP/cardapio.html:76
+msgid "Bobó de Camarão"
+msgstr "Shrimp Bobó"
+
+#: templates/APP/cardapio.html:77
+msgid "Cremoso, com aipim, leite de coco e arroz branco."
+msgstr "Creamy, with cassava, coconut milk, and white rice."
+
+#: templates/APP/cardapio.html:83
+msgid "Escondidinho de Carne Seca"
+msgstr "Dried Beef Shepherd's Pie"
+
+#: templates/APP/cardapio.html:84
+msgid "Purê de aipim gratinado com queijo coalho."
+msgstr "Cassava purée au gratin with curd cheese."
+
+#: templates/APP/cardapio.html:92
+msgid "Bebidas"
+msgstr "Drinks"
+
+#: templates/APP/cardapio.html:96
+msgid "Caipirinha Tradicional"
+msgstr "Traditional Caipirinha"
+
+#: templates/APP/cardapio.html:97
+msgid "Cachaça, limão, açúcar e gelo."
+msgstr "Cachaça, lime, sugar, and ice."
+
+#: templates/APP/cardapio.html:103
+msgid "Suco Natural (Laranja/Abacaxi)"
+msgstr "Natural Juice (Orange/Pineapple)"
+
+#: templates/APP/cardapio.html:104
+msgid "Polpa de fruta fresca, 400ml."
+msgstr "Fresh fruit pulp, 400ml."
+
+#: templates/APP/cardapio.html:110
+msgid "Cerveja Artesanal (Long Neck)"
+msgstr "Craft Beer (Long Neck)"
+
+#: templates/APP/cardapio.html:111
+msgid "Consulte as opções disponíveis."
+msgstr "Check available options."
+
+#: templates/APP/cardapio.html:117
+msgid "Água Mineral (Com ou Sem Gás)"
+msgstr "Mineral Water (Still or Sparkling)"
+
+#: templates/APP/cardapio.html:118
+msgid "Garrafa 300ml."
+msgstr "300ml bottle."
+
+#: templates/APP/cardapio.html:126
+msgid "Sobremesas"
+msgstr "Desserts"
+
+#: templates/APP/cardapio.html:130
+msgid "Pudim de Leite Condensado"
+msgstr "Condensed Milk Pudding"
+
+#: templates/APP/cardapio.html:131
+msgid "Receita clássica da casa com calda de caramelo."
+msgstr "Classic house recipe with caramel sauce."
+
+#: templates/APP/cardapio.html:137
+msgid "Mousse de Maracujá"
+msgstr "Passion Fruit Mousse"
+
+#: templates/APP/cardapio.html:138
+msgid "Cremoso e refrescante, com calda da fruta."
+msgstr "Creamy and refreshing, with fruit syrup."
+
+#: templates/APP/cardapio.html:144
+msgid "Petit Gâteau"
+msgstr "Petit Gâteau"
+
+#: templates/APP/cardapio.html:145
+msgid "Bolo de chocolate com recheio quente e sorvete de creme."
+msgstr "Chocolate cake with warm filling and vanilla ice cream."

@@ -4,6 +4,7 @@ from django import forms
 from .models import Reserva
 import re
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 class ReservaForm(forms.ModelForm):
 
@@ -24,6 +25,14 @@ class ReservaForm(forms.ModelForm):
     class Meta:
         model = Reserva
         fields = ['nome_cliente', 'telefone', 'email', 'numero_de_pessoas', 'data_reserva', 'observacoes']
+        labels = {
+            'nome_cliente': _('Nome do Cliente'),
+            'telefone': _('Telefone'),
+            'email': _('E-mail'),
+            'numero_pessoas': _('Número de Pessoas'),
+            'data_reserva': _('Data da Reserva'),
+            'observacoes': _('Observações'),
+        }
         
         widgets = {
             # ... (outros widgets) ...

@@ -1,14 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
-
-{% block content %}
+{% load i18n %} {% block content %}
 <style>
-    /* O CSS do formulário que você tinha antes.
-      Eu peguei da sua correção anterior e removi as duplicatas.
-    */
+    /* ------------------------------------------- */
+    /* --- CSS DO LAYOUT (Modificado) --- */
+    /* ------------------------------------------- */
+
+    .page-container {
+        display: flex;
+        justify-content: center; 
+        align-items: flex-start; 
+        gap: 50px; 
+        max-width: 1600px; 
+        margin: 3rem auto; 
+        padding: 0 1.5rem; 
+    }
+
+    .text-content {
+        flex: 1; 
+        max-width: 500px; 
+        color: #f0f0f0;
+        animation: slideInFromLeft 1.2s ease-out;
+    }
+
+    .text-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #ffc107; 
+    }
+
+    .text-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    @keyframes slideInFromLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+
+    /* ------------------------------------------- */
+    /* --- SEU CSS DO FORMULÁRIO (Intacto) --- */
+    /* ------------------------------------------- */
+
     .form-container {
+        flex: 1; 
         max-width: 600px;
-        margin: 3rem auto;
+        margin: 0; 
         padding: 2.5rem;
         background-color: rgba(10, 10, 10, 0.7); 
         backdrop-filter: blur(10px);
@@ -27,6 +73,7 @@
         font-weight: bold;
         margin-bottom: 0.5rem;
     }
+    /* (O resto do seu CSS continua aqui, está intacto...) */
     .form-container input,
     .form-container textarea,
     .form-container select {
@@ -68,55 +115,122 @@
         transform: scale(1.02);
     }
 
-    /* Importante: Esta é a classe do SweetAlert escuro
-      que você já usa na outra tela. 
-    */
     .swal-dark-popup.swal2-popup {
         background: #2a2a2a !important;
         color: #f0f0f0 !important;
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
+
+
+    /* ------------------------------------------- */
+    /* --- NOVO CSS (Redes Sociais) --- */
+    /* ------------------------------------------- */
+
+    .social-media-container {
+        flex: 1;
+        max-width: 300px; 
+        color: #f0f0f0;
+        text-align: center;
+        padding-top: 1rem; 
+        
+        animation: slideInFromRight 1.2s ease-out;
+    }
+
+    .social-media-container h2 {
+        font-size: 2.5rem;
+        margin-bottom: 25px; 
+        color: #ffc107; 
+    }
+
+    .social-icons a {
+        display: inline-block;
+        font-size: 3.5rem; 
+        color: #f0f0f0; 
+        margin: 0 20px; 
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: #ffc107; 
+        transform: scale(1.1); 
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
 </style>
 
-<div class="form-container">
-    
-    <h2>{% if form.instance.pk %}Editar Reserva{% else %}Faça sua Reserva{% endif %}</h2>
-    
-    <form method="post" action="{% if form.instance.pk %}{% url 'editar_reserva' form.instance.pk %}{% else %}{% url 'criar_reserva' %}{% endif %}" novalidate id="reserva-form">
-        {% csrf_token %}
+<div class="page-container">
 
-        {% for field in form %}
-        <div class="mb-3">
-            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
-            {{ field }}
-            {% if field.errors %}
-                <div class="text-danger mt-1">
-                    <small>{{ field.errors|striptags }}</small>
-                </div>
-            {% endif %}
-        </div>
-        {% endfor %}
+    <div class="text-content">
+        <h2>{% trans "Nossa História" %}</h2>
+        <p>{% trans "Fundado com paixão pela boa comida e pela arte de receber bem, o Restaurante e Pizzaria Sabor Divino nasceu do sonho de oferecer experiências únicas à mesa. Desde o início, nossa missão sempre foi unir sabores tradicionais e um atendimento acolhedor, criando um ambiente onde cada cliente se sente em casa." %}</p>
+        <p>{% trans "Com receitas inspiradas na culinária italiana e brasileira, nossas pizzas artesanais são preparadas com ingredientes frescos, massa de fermentação natural e muito carinho. Além das pizzas, nosso cardápio conta com massas, carnes, saladas e pratos especiais que agradam a todos os paladares." %}</p>
+        <p>{% trans "O Sabor Divino é mais do que um restaurante — é um ponto de encontro para famílias, amigos e casais que desejam compartilhar bons momentos acompanhados de comida saborosa e um ambiente aconchegante." %}</p>
+        <p>{% trans "Hoje, seguimos com o mesmo propósito que nos inspirou desde o começo: oferecer uma experiência gastronômica divina, feita com amor em cada detalhe." %}</p>
+    </div>
+
+    <div class="form-container">
         
-        <div class="d-grid">
-            
-            <button type="submit" class="btn-confirmar" id="btn-confirmar-swal"
-                    data-is-editing="{% if form.instance.pk %}true{% else %}false{% endif %}"
-            >
-                {% if form.instance.pk %}
-                    Salvar Alterações
-                {% else %}
-                    Confirmar Reserva
+        <h2>{% if form.instance.pk %}{% trans "Editar Reserva" %}{% else %}{% trans "Faça sua Reserva" %}{% endif %}</h2>
+        
+        <form method="post" action="{% if form.instance.pk %}{% url 'editar_reserva' form.instance.pk %}{% else %}{% url 'criar_reserva' %}{% endif %}" novalidate id="reserva-form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger mt-1">
+                        <small>{{ field.errors|striptags }}</small>
+                    </div>
                 {% endif %}
-            </button>
-        </div>
-    </form>
-</div>
+            </div>
+            {% endfor %}
+            <div class="d-grid">
+                <button type="submit" class="btn-confirmar" id="btn-confirmar-swal"
+                        data-is-editing="{% if form.instance.pk %}true{% else %}false{% endif %}"
+                >
+                    {% if form.instance.pk %}
+                        {% trans "Salvar Alterações" %}
+                    {% else %}
+                        {% trans "Confirmar Reserva" %}
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
 
-<script src="https://unpkg.com/imask"></script>
+    <div class="social-media-container">
+        <h2>{% trans "Nossas Redes" %}</h2>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/pizzariasabordivinodelivery/" target="_blank" title="{% trans "Instagram" %}">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            
+            <a href="https://www.facebook.com/p/PIZZARIA-SABOR-DIVINO-100054288590661/?locale=pt_BR" target="_blank" title="{% trans "Facebook" %}">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            
+            <a href="https://wa.me/555130299352" target="_blank" title="{% trans "WhatsApp" %}">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+
+</div> <script src="https://unpkg.com/imask"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- CÓDIGO DA MÁSCARA DE TELEFONE (Existente) ---
     var phoneInput = document.querySelector('input[name="telefone"]');
     if (phoneInput) {
         var phoneMaskOptions = {
@@ -125,49 +239,37 @@ document.addEventListener('DOMContentLoaded', function() {
         var mask = IMask(phoneInput, phoneMaskOptions);
     }
 
-    // --- NOSSO NOVO CÓDIGO SWEETALERT ---
-    
-    // 1. Encontra o formulário e o botão pelos IDs que adicionamos
     const form = document.getElementById('reserva-form');
     const confirmButton = document.getElementById('btn-confirmar-swal');
 
     if (form && confirmButton) {
-        // 2. Adiciona o "ouvinte" de clique ao botão
         confirmButton.addEventListener('click', function(event) {
-            // 3. Previne o envio imediato do formulário
             event.preventDefault();
-
-            // 4. Checa se é "editar" ou "criar" (lendo o 'data-is-editing')
             const isEditing = confirmButton.dataset.isEditing === 'true';
-
-            let titleText = 'Você tem certeza?';
+            
+            // Textos do JavaScript traduzidos
+            let titleText = '{% trans "Você tem certeza?" %}';
             let confirmText;
 
             if (isEditing) {
-                // Texto que você pediu para "Editar Reserva"
-                confirmText = 'Tem certeza que deseja confirmar a reserva?';
+                confirmText = '{% trans "Tem certeza que deseja confirmar a reserva?" %}';
             } else {
-                // Texto padrão para "Criar Reserva"
-                confirmText = 'Tem certeza que deseja confirmar a reserva?';
+                confirmText = '{% trans "Tem certeza que deseja confirmar a reserva?" %}';
             }
 
-            // 5. Mostra o pop-up bonito do SweetAlert
             Swal.fire({
                 title: titleText,
                 text: confirmText,
-                icon: 'question', // Ícone de interrogação
+                icon: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6', // Azul (cor padrão de confirmação)
-                cancelButtonColor: '#6c757d',  // Cinza (cor de cancelar)
-                confirmButtonText: 'Sim, confirmar!',
-                cancelButtonText: 'Cancelar',
-                
-                // A MÁGICA: Usa a mesma classe de CSS escura da tela "gerenciar"
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: '{% trans "Sim, confirmar!" %}',
+                cancelButtonText: '{% trans "Cancelar" %}',
                 customClass: {
                     popup: 'swal-dark-popup' 
                 }
             }).then((result) => {
-                // 6. Se o usuário clicar em "Sim", envia o formulário
                 if (result.isConfirmed) {
                     form.submit();
                 }

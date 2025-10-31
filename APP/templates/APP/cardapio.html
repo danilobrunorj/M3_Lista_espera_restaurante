@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %} 
 
 {% block content %}
 <style>
@@ -42,6 +43,11 @@
         border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
     }
     
+    /* Remove a linha do último item de cada categoria (opcional, mas elegante) */
+    .item-cardapio:last-of-type {
+         border-bottom: none;
+    }
+
     /* Nome do prato */
     .item-info h4 {
         margin: 0;
@@ -59,215 +65,117 @@
     .item-preco {
         font-size: 1.2rem;
         font-weight: bold;
-        color: #ffffff; /* Preço também em branco */
+        color: #ffc107;
     }
 </style>
 
 <div class="content-card">
-    <h2 class="cardapio-titulo">Cardápio Sabor Divino</h2>
 
-    <h3 class="categoria-titulo">Pratos Brasileiros</h3>
+    <h1 class="cardapio-titulo">{% trans "Cardápio Sabor Divino" %}</h1>
+
+    <h2 class="categoria-titulo">{% trans "Pratos Brasileiros" %}</h2>
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Feijoada Completa</h4>
-            <p>Acompanha arroz, couve, farofa e laranja.</p>
+            <h4>{% trans "Feijoada Completa" %}</h4>
+            <p>{% trans "Acompanha arroz, couve, farofa e laranja." %}</p>
         </div>
         <span class="item-preco">R$ 45,90</span>
     </div>
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Moqueca de Peixe</h4>
-            <p>Com azeite de dendê, leite de coco, arroz e pirão.</p>
+            <h4>{% trans "Moqueca de Peixe" %}</h4>
+            <p>{% trans "Com azeite de dendê, leite de coco, arroz e pirão." %}</p>
         </div>
         <span class="item-preco">R$ 55,00</span>
     </div>
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Picanha na Chapa</h4>
-            <p>Fatias nobres de picanha com fritas, farofa e vinagrete.</p>
+            <h4>{% trans "Picanha na Chapa" %}</h4>
+            <p>{% trans "Fatias nobres de picanha com fritas, farofa e vinagrete." %}</p>
         </div>
         <span class="item-preco">R$ 79,90</span>
     </div>
-     <div class="item-cardapio">
+
+    <div class="item-cardapio">
         <div class="item-info">
-            <h4>Bobó de Camarão</h4>
-            <p>Cremoso, com aipim, leite de coco e arroz branco.</p>
+            <h4>{% trans "Bobó de Camarão" %}</h4>
+            <p>{% trans "Cremoso, com aipim, leite de coco e arroz branco." %}</p>
         </div>
         <span class="item-preco">R$ 62,00</span>
     </div>
-     <div class="item-cardapio">
+
+    <div class="item-cardapio">
         <div class="item-info">
-            <h4>Escondidinho de Carne Seca</h4>
-            <p>Purê de aipim gratinado com queijo coalho.</p>
+            <h4>{% trans "Escondidinho de Carne Seca" %}</h4>
+            <p>{% trans "Purê de aipim gratinado com queijo coalho." %}</p>
         </div>
         <span class="item-preco">R$ 38,50</span>
     </div>
 
-    <h3 class="categoria-titulo">Pizzas</h3>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Mussarela</h4>
-            <p>Molho de tomate fresco, mussarela e orégano.</p>
-        </div>
-        <span class="item-preco">R$ 48,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Calabresa</h4>
-            <p>Molho de tomate, mussarela, calabresa fatiada e cebola.</p>
-        </div>
-        <span class="item-preco">R$ 52,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Margherita</h4>
-            <p>Molho de tomate, mussarela, rodelas de tomate e manjericão fresco.</p>
-        </div>
-        <span class="item-preco">R$ 50,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Frango com Catupiry</h4>
-            <p>Molho de tomate, mussarela, frango desfiado e catupiry original.</p>
-        </div>
-        <span class="item-preco">R$ 54,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Portuguesa</h4>
-            <p>Molho, mussarela, presunto, ovo, cebola e azeitonas.</p>
-        </div>
-        <span class="item-preco">R$ 55,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Quatro Queijos</h4>
-            <p>Molho, mussarela, provolone, parmesão e gorgonzola.</p>
-        </div>
-        <span class="item-preco">R$ 58,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Pepperoni</h4>
-            <p>Molho de tomate, mussarela e fatias de pepperoni.</p>
-        </div>
-        <span class="item-preco">R$ 57,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Sabor Divino (Da Casa)</h4>
-            <p>Molho, mussarela, carne seca desfiada, catupiry e cebola roxa.</p>
-        </div>
-        <span class="item-preco">R$ 65,00</span>
-    </div>
-    <h3 class="categoria-titulo">Sobremesas</h3>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Pudim de Leite Condensado</h4>
-            <p>A sobremesa mais amada do Brasil.</p>
-        </div>
-        <span class="item-preco">R$ 12,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Mousse de Maracujá</h4>
-            <p>Cremoso e refrescante.</p>
-        </div>
-        <span class="item-preco">R$ 14,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Brigadeirão</h4>
-            <p>Intenso sabor de chocolate, com granulado.</p>
-        </div>
-        <span class="item-preco">R$ 15,00</span>
-    </div>
-     <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Quindim</h4>
-            <p>Doce tradicional à base de coco e gema de ovo.</p>
-        </div>
-        <span class="item-preco">R$ 10,00</span>
-    </div>
+    
+    <h2 class="categoria-titulo">{% trans "Bebidas" %}</h2>
 
-    <h3 class="categoria-titulo">Bebidas</h3>
-     <div class="item-cardapio">
+    <div class="item-cardapio">
         <div class="item-info">
-            <h4>Caipirinha de Limão</h4>
-            <p>Cachaça, vodka ou saquê.</p>
+            <h4>{% trans "Caipirinha Tradicional" %}</h4>
+            <p>{% trans "Cachaça, limão, açúcar e gelo." %}</p>
         </div>
         <span class="item-preco">R$ 18,00</span>
     </div>
-    
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Coca-Cola</h4>
-            <p>Lata 350ml.</p>
-        </div>
-        <span class="item-preco">R$ 6,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Coca-Cola Zero</h4>
-            <p>Lata 350ml.</p>
-        </div>
-        <span class="item-preco">R$ 6,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Guaraná Antarctica</h4>
-            <p>Lata 350ml.</p>
-        </div>
-        <span class="item-preco">R$ 6,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Água Mineral sem Gás</h4>
-            <p>Garrafa 500ml.</p>
-        </div>
-        <span class="item-preco">R$ 5,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Água Mineral com Gás</h4>
-            <p>Garrafa 500ml.</p>
-        </div>
-        <span class="item-preco">R$ 5,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Suco de Laranja Natural</h4>
-            <p>Copo 300ml.</p>
-        </div>
-        <span class="item-preco">R$ 9,00</span>
-    </div>
-    <div class="item-cardapio">
-        <div class="item-info">
-            <h4>Cerveja Heineken</h4>
-            <p>Long Neck 330ml.</p>
+            <h4>{% trans "Suco Natural (Laranja/Abacaxi)" %}</h4>
+            <p>{% trans "Polpa de fruta fresca, 400ml." %}</p>
         </div>
         <span class="item-preco">R$ 12,00</span>
     </div>
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Cerveja Budweiser</h4>
-            <p>Long Neck 330ml.</p>
+            <h4>{% trans "Cerveja Artesanal (Long Neck)" %}</h4>
+            <p>{% trans "Consulte as opções disponíveis." %}</p>
         </div>
-        <span class="item-preco">R$ 12,00</span>
+        <span class="item-preco">R$ 15,00</span>
     </div>
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Cerveja Original</h4>
-            <p>Garrafa 600ml.</p>
+            <h4>{% trans "Água Mineral (Com ou Sem Gás)" %}</h4>
+            <p>{% trans "Garrafa 300ml." %}</p>
         </div>
-        <span class="item-preco">R$ 16,00</span>
+        <span class="item-preco">R$ 6,00</span>
     </div>
+
+
+    <h2 class="categoria-titulo">{% trans "Sobremesas" %}</h2>
+
     <div class="item-cardapio">
         <div class="item-info">
-            <h4>Vinho Tinto (Taça)</h4>
-            <p>Consulte a seleção da casa.</p>
+            <h4>{% trans "Pudim de Leite Condensado" %}</h4>
+            <p>{% trans "Receita clássica da casa com calda de caramelo." %}</p>
+        </div>
+        <span class="item-preco">R$ 14,00</span>
+    </div>
+
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>{% trans "Mousse de Maracujá" %}</h4>
+            <p>{% trans "Cremoso e refrescante, com calda da fruta." %}</p>
+        </div>
+        <span class="item-preco">R$ 16,50</span>
+    </div>
+
+    <div class="item-cardapio">
+        <div class="item-info">
+            <h4>{% trans "Petit Gâteau" %}</h4>
+            <p>{% trans "Bolo de chocolate com recheio quente e sorvete de creme." %}</p>
         </div>
         <span class="item-preco">R$ 22,00</span>
     </div>
-    </div>
+
+</div> 
 {% endblock %}
