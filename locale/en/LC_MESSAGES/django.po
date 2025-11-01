@@ -289,3 +289,23 @@ msgstr "Petit Gâteau"
 #: templates/APP/cardapio.html:145
 msgid "Bolo de chocolate com recheio quente e sorvete de creme."
 msgstr "Chocolate cake with warm filling and vanilla ice cream."
+
+#: templates/APP/login.html:43
+msgid "Login de Administrador"
+msgstr "Administrator Login"
+
+#: templates/APP/login.html:46
+msgid "Usuário ou senha inválidos."
+msgstr "Invalid username or password."
+
+#: templates/APP/login.html:52
+msgid "Usuário:"
+msgstr "Username:"
+
+#: templates/APP/login.html:57
+msgid "Senha:"
+msgstr "Password:"
+
+#: templates/APP/login.html:61
+msgid "Entrar"
+msgstr "Login"
